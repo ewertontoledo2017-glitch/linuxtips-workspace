@@ -2,21 +2,29 @@
 
 _Exportado em 02/04/2026_
 
-1. Containers e Docker
-Docker e praticamente todas as tecnologias de containerização dependem de recursos do kernel Linux:
+ Docker/Containers
+Vamos aproveitar o paradoxo: usar containers para aprender Linux, sendo que containers são baseados em Linux! Mente explodida? 🤯
 
-# Ver namespaces em uso por um container
-sudo lsns | grep nome_do_container
+Passo 1: Instalar Docker
+Windows/macOS: Docker Desktop
+Linux:
+# Ubuntu
+sudo apt install docker.io
+# RHEL/CentOS
+sudo dnf install docker
 
-# Ver cgroups (control groups) de um container
-ls -la /sys/fs/cgroup/*/docker/
+Passo 2: Rodar Containers de Diferentes Distros
+Ubuntu:
+docker run -it --name ubuntu-lab ubuntu:latest bash
 
-# Um container Docker simples
-docker run -d --name webserver nginx:alpine
+Alpine:
+docker run -it --name alpine-lab alpine:latest sh
 
-O Docker usa:
-Namespaces: Isolamento de processos, rede, mount points
-Cgroups: Limitação e controle de recursos (CPU, memória)
-Overlayfs: Sistema de arquivos em camadas
-Capabilities: Controle granular de privilégios
+Rocky Linux:
+docker run -it --name rocky-lab rockylinux:latest bash
+
+Debian:
+docker run -it --name debian-lab debian:latest bash
+
+Esta opção é a mais leve e permite experimentar várias distros rapidamente, mas tem limitações para aprender sobre serviços, systemd e outras partes do sistema.
 
